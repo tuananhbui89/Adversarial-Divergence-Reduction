@@ -1,0 +1,33 @@
+# Adversarial-Divergence-Reduction (ADR)
+
+This implementation corresponds with the paper ["Improving Adversarial Robustness by Enforcing Local and Global Compactness"](https://arxiv.org/abs/2007.05123) which has been accepted to ECCV-2020. 
+
+## References 
+This implementation is mainly based on the [Cifar10-Challenge](https://github.com/MadryLab/cifar10_challenge) from Madry lab.  
+
+## Requirements 
+- Python 3.x
+- Tensorflow 1.15
+- scikit-learn 0.23.2
+- seaborn 0.9.0
+
+## Requirements 
+Just run the file `runloop_cifar10.py` for the default setting with sequential training and testing 
+
+
+## Cite 
+
+Please cite the paper whenever ADR is used to produce published results or incorporated into other software:
+
+            @inproceedings{bui2020improving,
+              title={Improving Adversarial Robustness by Enforcing Local and Global Compactness},
+              author={Bui, Anh and Le, Trung and Zhao, He and Montague, Paul and deVel, Olivier and Abraham, Tamas and Phung, Dinh},
+              booktitle={European Conference on Computer Vision (ECCV), 2020},
+              year={2020}
+            }
+
+## License  
+
+As a free open-source implementation, ADR is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. All other warranties including, but not limited to, merchantability and fitness for purpose, whether express, implied, or arising by operation of law, course of dealing, or trade usage are hereby disclaimed. I believe that the programs compute what I claim they compute, but I do not guarantee this. The programs may be poorly and inconsistently documented and may contain undocumented components, features or modifications. I make no guarantee that these programs will be suitable for any application.
+
+ADR is licensed under the Apache License 2.0.
