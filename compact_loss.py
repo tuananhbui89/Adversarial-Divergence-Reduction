@@ -27,25 +27,6 @@ def label_weight(y1, y2, scale, pairwise, one_hot=False):
 
     return d 
 
-def logits_weight(y1, y2, scale, pairwise, one_hot=False): 
-    # Scale should in (0., 1.) 
-    if not one_hot:
-        y1 = tf.one_hot(y1, 10, on_value=1.0, off_value=0.0, dtype=tf.float32) # [b, 10]
-        y2 = tf.one_hot(y2, 10, on_value=1.0, off_value=0.0, dtype=tf.float32) # [b, 10]
-
-    if pairwise: 
-        y1_ = K.expand_dims(y1, axis=0) # [1, b, 10]
-        y2_ = K.expand_dims(y2, axis=1) # [b, 1, 10]
-    else: 
-        y1_ = y1 
-        y2_ = y2 
-
-    d = tf.abs(y1_ - y2_) # [b, b, 10] if pairwise else [b, 10]
-    d = tf.reduce_sum(d, axis=-1, keepdims=False) # [b, b], only two values [0., 2.]
-    d = d / tf.reduce_max(d) # [0., 1.]
-
-    return d 
-
 def compact_loss(z, z_p, pairwise): 
     # z, z_p shape [b, k]
 

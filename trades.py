@@ -1,7 +1,10 @@
 """
-Implementation of attack methods. Running this file as a program will
-apply the attack to the model specified by the config file and store
-the examples in an .npy file.
+Tensorflow reimplementation for TRADES Attack.
+References: 
+- Original Pytorch Implementation 
+https://github.com/yaodongyu/TRADES/blob/master/trades.py
+- Madry PGD Attack 
+https://github.com/MadryLab/cifar10_challenge/blob/master/pgd_attack.py
 """
 from __future__ import absolute_import
 from __future__ import division

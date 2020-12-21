@@ -74,6 +74,8 @@ def _add_loss(x, w, t):
     l_gb_com: Global compactness, dis(z_i, z_j) with label weighting 
     l_gb_vat: Global smoothness, KL(p(x_i) || p(x_j)) with label weighting 
   (The global smoothness is just for further investigation, set l_gb_smt=0.)
+  Refer to the paper "Improving Adversarial Robustness by Enforcing Local and Global Compactness"
+  for more detail.  
 """  
 
 from compact_loss import softmax_cross_entropy_with_two_logits as softmax_xent_two

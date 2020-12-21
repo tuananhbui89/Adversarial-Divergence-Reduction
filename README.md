@@ -11,9 +11,16 @@ This implementation is mainly based on the [Cifar10-Challenge](https://github.co
 - scikit-learn 0.23.2
 - seaborn 0.9.0
 
-## Requirements 
-Just run the file `runloop_cifar10.py` for the default setting with sequential training and testing 
-
+## Running 
+Just run the file `runloop_cifar10.py` for the default setting with sequential training and testing. Refer to the file `mysetting.py` for parameter setting.  
+Custom ADV Training 
+	python train_compact.py --defense=adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=0.0 --confw=0.0 --vatw=0.0 --gbcomw=0.0
+	python eval_compact.py --defense=adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=0.0 --confw=0.0 --vatw=0.0 --gbcomw=0.0
+	python eval_multi_targeted.py --defense=adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=0.0 --confw=0.0 --vatw=0.0 --gbcomw=0.0
+Custom ADR-ADV Training: 
+	python train_compact.py --defense=adr_adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=1.0 --confw=1.0 --vatw=1.0 --gbcomw=1.0
+	python eval_compact.py --defense=adr_adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=1.0 --confw=1.0 --vatw=1.0 --gbcomw=1.0
+	python eval_multi_targeted.py --defense=adr_adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=1.0 --confw=1.0 --vatw=1.0 --gbcomw=1.0
 
 ## Cite 
 
