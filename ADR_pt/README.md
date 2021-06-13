@@ -1,33 +1,45 @@
 # Adversarial-Divergence-Reduction (ADR)
 
-This implementation corresponds with the paper ["Improving Adversarial Robustness by Enforcing Local and Global Compactness"](https://arxiv.org/abs/2007.05123) which has been accepted to ECCV-2020. [paper](https://arxiv.org/abs/2007.05123)[slide](https://www.dropbox.com/s/m7kdbte0rxh0qra/FIT_presentation_Sep_20.pdf?dl=0)
+This pytorch version for the the paper ["Improving Adversarial Robustness by Enforcing Local and Global Compactness"](https://arxiv.org/abs/2007.05123) which has been accepted to ECCV-2020. [paper](https://arxiv.org/abs/2007.05123)[slide](https://www.dropbox.com/s/m7kdbte0rxh0qra/FIT_presentation_Sep_20.pdf?dl=0)
 
-## References 
-This implementation is mainly based on the [Cifar10-Challenge](https://github.com/MadryLab/cifar10_challenge) from Madry lab.  
+This also includes baselines methods: (1) PGD-AT (2) TRADES
 
 ## Requirements 
-- Python 3.x
-- Tensorflow 1.15
-- scikit-learn 0.23.2
-- seaborn 0.9.0
+- Python 3.7
+- Auto-Attack 0.1
+- Foolbox 3.2.1
+- Numba 0.52.0
 
-## Running 
-Just run the file `runloop_cifar10.py` for the default setting with sequential training and testing. Refer to the file `mysetting.py` for parameter setting.  
-Custom ADV Training:
+## Robustness Evaluation 
+We use several attackers to challenge the baselines and our method. 
 
-	python train_compact.py --defense=adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=0.0 --confw=0.0 --vatw=0.0 --gbcomw=0.0
+(1) PGD Attack. We use the pytorch version of the Cifar10 Challenge with norm Linf, from the [implementation](https://github.com/yaodongyu/TRADES/blob/master/pgd_attack_cifar10.py). Attack setting for the Cifar10 dataset: `epsilon`=8/255, `step_size`=2/255, `num_steps`=200, `random_init`=True 
 
-	python eval_compact.py --defense=adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=0.0 --confw=0.0 --vatw=0.0 --gbcomw=0.0
+(2) Auto-Attack. The official implementation in the [link](https://github.com/fra31/auto-attack). We test with the standard version with Linf
 
-	python eval_multi_targeted.py --defense=adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=0.0 --confw=0.0 --vatw=0.0 --gbcomw=0.0
+(3) Brendel & Bethge Attack. The B&B attack is adapted from [the implementation](https://github.com/wielandbrendel/adaptive_attacks_paper/tree/master/07_ensemble_diversity) of the paper ["On Adaptive Attacks to Adversarial Example Defenses"](https://arxiv.org/abs/2002.08347). It has been initialized with PGD attack (20 steps, `eta`=`epsilon`/2) to increase the success rate.  
 
-Custom ADR-ADV Training: 
+We use the full test-set (10k images) for the attack (1) and 1000 first test images for the attacks (2-3).
 
-	python train_compact.py --defense=adr_adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=1.0 --confw=1.0 --vatw=1.0 --gbcomw=1.0
+## Training and Evaluation 
 
-	python eval_compact.py --defense=adr_adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=1.0 --confw=1.0 --vatw=1.0 --gbcomw=1.0
-	
-	python eval_multi_targeted.py --defense=adr_adv --ds=cifar10  --model=nonwide --perturb=pgd --lccomw=1.0 --confw=1.0 --vatw=1.0 --gbcomw=1.0
+We provide the default setting for each corresponding dataset (MNIST, CIFAR10) which is used in our paper.
+
+To reproduce the baselines, run the following script. 
+```shell
+python run_baseline.py
+```
+
+To reproduce our results, run the following script. 
+```shell
+python run_main.py
+```
+
+Please refer to the file `mysetting.py` for custom running. The pretrained model will be published soon. 
+
+## References
+- The B&B attack is adapted from [the implementation](https://github.com/wielandbrendel/adaptive_attacks_paper/tree/master/07_ensemble_diversity) of the paper ["On Adaptive Attacks to Adversarial Example Defenses"](https://arxiv.org/abs/2002.08347). 
+- The Auto-attack is adapted from [the implementation](https://github.com/fra31/auto-attack) of the paper ["Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks", Francesco Croce, Matthias Hein, ICML 2020](https://arxiv.org/abs/2003.01690).
 
 ## Cite 
 
