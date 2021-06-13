@@ -18,7 +18,6 @@ parser.add_argument("--vatw", 		type=float, 	default=0., 		help="weight of vat l
 parser.add_argument("--gbcomw", 	type=float, 	default=0., 		help="weight of global compactness")
 parser.add_argument("--gbsmtw", 	type=float, 	default=0., 		help="weight of global smoothness")
 parser.add_argument("--wdc", 		type=float, 	default=0.0002, 	help="weight of weight decay")
-parser.add_argument("--ord", 		type=int, 		default=1, 			help="latent distance order")
 
 parser.add_argument("--atk_eps", 	type=float, 	default=8., 		help="attack epsilon")
 parser.add_argument("--atk_steps", 	type=int, 		default=20, 		help="attack number of step")
